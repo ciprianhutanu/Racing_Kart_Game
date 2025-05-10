@@ -5,12 +5,13 @@ using UnityEngine;
 public class KartController : MonoBehaviour
 {
     [Header("Driving Attributes")]
-    public float forwardAcceleration = 20f;
-    public float reverseAcceleration = 10f;
+    public float forwardAcceleration = 10f;
+    public float reverseAcceleration = 5f;
     public float groundCheckRadius = 0.5f;
-    public float maxForwardSpeed = 30f;
+    public float maxForwardSpeed = 40f;
     public float maxReverseSpeed = 15f;
-    public float turnSpeed = 50f;
+    public float brakeFactor = 20f;
+    public float turnAngle = 60f;
     public float drag = 7f;
 
     [Header("Drifting")]
@@ -19,7 +20,7 @@ public class KartController : MonoBehaviour
     public float driftStaminaBar = 5f;
     public float driftCooldown = 10f;
     public float maxDriftBoost = 10f;
-    public float maxDriftAngle = 25f; 
+    public float maxDriftAngle = 30f; 
     public float driftSmoothing = 5f;
     public Transform carModel;
 
@@ -92,19 +93,21 @@ public class KartController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float adjustedTurnSpeed = isDrifting ? turnSpeed * driftTurnMultiplier : turnSpeed;
+        float adjustedTurnSpeed = isDrifting ? turnAngle * driftTurnMultiplier : turnAngle;
 
         Vector3 velocity = transform.forward * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position - velocity);
 
-        if (Mathf.Abs(currentSpeed) > 0.1f)
+        float turningBuff = currentSpeed > 0 ? currentSpeed / maxForwardSpeed : -currentSpeed / maxReverseSpeed;
+
+        float turnAmount = steeringInput * adjustedTurnSpeed * Mathf.Clamp01(turningBuff) * Time.fixedDeltaTime;
+
+        turnAmount = currentSpeed > 0 ? turnAmount : -turnAmount;
+
+        Quaternion turnRotation = Quaternion.Euler(0f, turnAmount, 0f);
+        if (isGrounded)
         {
-            float turnAmount = steeringInput * adjustedTurnSpeed * Mathf.Clamp01(currentSpeed / maxForwardSpeed) * Time.fixedDeltaTime;
-            Quaternion turnRotation = Quaternion.Euler(0f, turnAmount, 0f);
-            if (isGrounded)
-            {
-                rb.MoveRotation(rb.rotation * turnRotation);
-            }
+            rb.MoveRotation(rb.rotation * turnRotation);
         }
 
     }
@@ -134,7 +137,7 @@ public class KartController : MonoBehaviour
 
     private void CheckForDrift()
     {
-        Debug.Log(driftTime);
+        //Debug.Log(driftTime);
 
         if (isDrifting)
         {
@@ -169,7 +172,7 @@ public class KartController : MonoBehaviour
 
         if (BRAKE_FLAG)
         {
-            acceleration = reverseAcceleration;
+            acceleration = brakeFactor;
             currentSpeed = Mathf.MoveTowards(currentSpeed, 0, acceleration * Time.deltaTime);
         }
         else
@@ -186,7 +189,7 @@ public class KartController : MonoBehaviour
             currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
         }
 
-        Debug.Log(currentSpeed + " " + accelerationInput);
+        //Debug.Log(currentSpeed + " " + accelerationInput);
     }
 
     private float CalculateTargetSpeed()
