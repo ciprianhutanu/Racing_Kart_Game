@@ -41,12 +41,12 @@ public class WheelController : MonoBehaviour
     void RotateWheel()
     {
         float rollingAngle = (kartSpeed * Time.deltaTime) / (2 * Mathf.PI * wheelRadius) * 360f;
-        wheelMesh.Rotate(0f, 0f, rollingAngle, Space.Self);
+        wheelMesh.Rotate(0f, rollingAngle, 0f, Space.Self);
     }
 
     void SteerWheel()
     {
         float steeringAngle = maxSteeringAngle * steeringInput;
-        wheelMesh.localRotation = Quaternion.Euler(0f, steeringAngle - 90, 0f);
+        wheelMesh.localRotation = Quaternion.Euler(0f, steeringAngle, 90);
     }
 }
