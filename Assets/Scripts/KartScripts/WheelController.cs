@@ -14,10 +14,7 @@ public class WheelController : MonoBehaviour
     public Transform wheelMesh; 
     public float wheelRadius = 0.08f;
     public float maxSteeringAngle = 30f;
-
-    private float rotationAngle = 0f; 
-    private float steeringAngle = 0f; 
-
+ 
     [HideInInspector]
     public static float kartSpeed; 
     [HideInInspector]
