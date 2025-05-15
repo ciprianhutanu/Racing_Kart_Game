@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4797624007115948727}
   - component: {fileID: 7434863426086594062}
   - component: {fileID: 2247644498525472872}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: LongLeftTurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6288733202705037455}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Checkpoints
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,7 +154,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 522039956719600729}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AIBarriers
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -246,6 +246,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIBarrierR2
       objectReference: {fileID: 0}
+    - target: {fileID: 4314507550008980413, guid: b5fc92bf8d1eb054f8a4d79b88cf1c39, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -320,6 +324,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIBarrierR3
       objectReference: {fileID: 0}
+    - target: {fileID: 4314507550008980413, guid: b5fc92bf8d1eb054f8a4d79b88cf1c39, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -341,6 +349,10 @@ PrefabInstance:
     - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_Name
       value: Checkpoint3
+      objectReference: {fileID: 0}
+    - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2028908575222649949, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -403,6 +415,10 @@ PrefabInstance:
     - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_Name
       value: Checkpoint2
+      objectReference: {fileID: 0}
+    - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2028908575222649949, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -518,6 +534,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIBarrierL2
       objectReference: {fileID: 0}
+    - target: {fileID: 4314507550008980413, guid: b5fc92bf8d1eb054f8a4d79b88cf1c39, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -592,6 +612,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIBarrierL1
       objectReference: {fileID: 0}
+    - target: {fileID: 4314507550008980413, guid: b5fc92bf8d1eb054f8a4d79b88cf1c39, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -613,6 +637,10 @@ PrefabInstance:
     - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_Name
       value: Checkpoint1
+      objectReference: {fileID: 0}
+    - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2028908575222649949, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -728,6 +756,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIBarrierR1
       objectReference: {fileID: 0}
+    - target: {fileID: 4314507550008980413, guid: b5fc92bf8d1eb054f8a4d79b88cf1c39, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -749,6 +781,10 @@ PrefabInstance:
     - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_Name
       value: Checkpoint6
+      objectReference: {fileID: 0}
+    - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2028908575222649949, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -812,6 +848,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Checkpoint4
       objectReference: {fileID: 0}
+    - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2028908575222649949, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.38
@@ -873,6 +913,10 @@ PrefabInstance:
     - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_Name
       value: Checkpoint5
+      objectReference: {fileID: 0}
+    - target: {fileID: 557071783939504266, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2028908575222649949, guid: 088aff5a7cdc5744fbc0c487e04ffb9e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -987,6 +1031,10 @@ PrefabInstance:
     - target: {fileID: 4314507550008980413, guid: b5fc92bf8d1eb054f8a4d79b88cf1c39, type: 3}
       propertyPath: m_Name
       value: AIBarrierL3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314507550008980413, guid: b5fc92bf8d1eb054f8a4d79b88cf1c39, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

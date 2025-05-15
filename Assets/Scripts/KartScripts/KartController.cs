@@ -95,22 +95,33 @@ public class KartController : MonoBehaviour
     {
         float adjustedTurnSpeed = isDrifting ? turnAngle * driftTurnMultiplier : turnAngle;
 
+        // Calculate movement
         Vector3 velocity = transform.forward * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position - velocity);
 
-        float turningBuff = currentSpeed > 0 ? currentSpeed / maxForwardSpeed : -currentSpeed / maxReverseSpeed;
-
-        float turnAmount = steeringInput * adjustedTurnSpeed * Mathf.Clamp01(turningBuff) * Time.fixedDeltaTime;
-
-        turnAmount = currentSpeed > 0 ? turnAmount : -turnAmount;
-
-        Quaternion turnRotation = Quaternion.Euler(0f, turnAmount, 0f);
-        if (isGrounded)
+        // Turning logic
+        if (Mathf.Abs(currentSpeed) > 0.1f) // Prevent turning when stationary
         {
-            rb.MoveRotation(rb.rotation * turnRotation);
-        }
+            // Non-linear scaling for sharper low-speed steering
+            float turningBuff = Mathf.Pow(Mathf.Abs(currentSpeed) / maxForwardSpeed, 0.5f);
+            turningBuff = Mathf.Clamp01(turningBuff); // Keep within [0, 1] range
 
+            float turnAmount = steeringInput * adjustedTurnSpeed * turningBuff * Time.fixedDeltaTime;
+
+            if (currentSpeed < 0)
+            {
+                // Reverse movement inverts the steering
+                turnAmount = -turnAmount;
+            }
+
+            if (isGrounded)
+            {
+                Quaternion turnRotation = Quaternion.Euler(0f, turnAmount, 0f);
+                rb.MoveRotation(rb.rotation * turnRotation);
+            }
+        }
     }
+
 
     private void StartDrift()
     {
