@@ -8,7 +8,7 @@ public class KartController : MonoBehaviour
     public float forwardAcceleration = 10f;
     public float reverseAcceleration = 5f;
     public float groundCheckRadius = 0.5f;
-    public float maxForwardSpeed = 40f;
+    public float maxForwardSpeed = 50f;
     public float maxReverseSpeed = 15f;
     public float brakeFactor = 20f;
     public float turnAngle = 60f;
@@ -39,6 +39,9 @@ public class KartController : MonoBehaviour
     private float targetSpeed = 0f;
     private float driftTime = 0f;
 
+    private Vector3 startingPosition;
+    private Quaternion startingRotation;
+
     [HideInInspector]
     public float accelerationInput = 0f;
     [HideInInspector]
@@ -55,13 +58,13 @@ public class KartController : MonoBehaviour
 
         if (rb == null) rb = GetComponent<Rigidbody>();
         rb.drag = drag;
+
+        startingPosition = transform.position;
+        startingRotation = transform.rotation;
     }
 
     void Update()
     {
-        accelerationInput = Input.GetAxis("Vertical");
-        steeringInput = Input.GetAxis("Horizontal");
-
         isGrounded = Physics.CheckSphere(groundCheck.position, groundCheckRadius, groundLayer);
 
         if (isGrounded)
@@ -70,16 +73,12 @@ public class KartController : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.LeftShift) && Mathf.Abs(steeringInput) > 0.1f && currentSpeed > 0 && !NOT_ABLE_TO_DRIFT_FLAG)
             {
-                targetDriftAngle = maxDriftAngle * Mathf.Sign(steeringInput);
-
-                StartDrift();
+                ManageDrift(true);
             }
 
             if ((Input.GetKeyUp(KeyCode.LeftShift) || driftDirection != (steeringInput > 0) || currentSpeed < 0 || NOT_ABLE_TO_DRIFT_FLAG) && isDrifting)
             {
-                targetDriftAngle = 0f;
-
-                EndDrift();
+                ManageDrift(false);
             }
 
             float currentAngle = Mathf.LerpAngle(carModel.localEulerAngles.y, targetDriftAngle, Time.deltaTime * driftSmoothing);
@@ -95,22 +94,18 @@ public class KartController : MonoBehaviour
     {
         float adjustedTurnSpeed = isDrifting ? turnAngle * driftTurnMultiplier : turnAngle;
 
-        // Calculate movement
         Vector3 velocity = transform.forward * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position - velocity);
 
-        // Turning logic
-        if (Mathf.Abs(currentSpeed) > 0.1f) // Prevent turning when stationary
-        {
-            // Non-linear scaling for sharper low-speed steering
+        if (Mathf.Abs(currentSpeed) > 0.1f) 
+        { 
             float turningBuff = Mathf.Pow(Mathf.Abs(currentSpeed) / maxForwardSpeed, 0.5f);
-            turningBuff = Mathf.Clamp01(turningBuff); // Keep within [0, 1] range
+            turningBuff = Mathf.Clamp01(turningBuff);
 
             float turnAmount = steeringInput * adjustedTurnSpeed * turningBuff * Time.fixedDeltaTime;
 
             if (currentSpeed < 0)
             {
-                // Reverse movement inverts the steering
                 turnAmount = -turnAmount;
             }
 
@@ -122,6 +117,59 @@ public class KartController : MonoBehaviour
         }
     }
 
+    public void SetDrivingParam(float _accelerationInput, float _steeringInput, bool _drift)
+    {
+        accelerationInput = _accelerationInput;
+        steeringInput = _steeringInput;
+        ManageDrift(_drift);
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return currentSpeed;
+    }
+
+    public bool GetDriftingState()
+    {
+        return isDrifting;
+    }
+
+    public void ResetKart()
+    {
+        transform.position = startingPosition; 
+        transform.rotation = startingRotation;
+
+        if (rb != null)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+
+        accelerationInput = 0f;
+        steeringInput = 0f;
+        currentSpeed = 0f;
+        isDrifting = false;
+        driftTime = 0f;
+        currentDriftTime = 0f;
+
+    }
+
+    private void ManageDrift(bool drifting)
+    {
+        if(drifting && Mathf.Abs(steeringInput) > 0.1f && currentSpeed > 0 && !NOT_ABLE_TO_DRIFT_FLAG)
+        {
+            targetDriftAngle = maxDriftAngle * Mathf.Sign(steeringInput);
+
+            StartDrift();
+        }
+
+        if ((!drifting || driftDirection != (steeringInput > 0) || currentSpeed < 0 || NOT_ABLE_TO_DRIFT_FLAG) && isDrifting)
+        {
+            targetDriftAngle = 0f;
+
+            EndDrift();
+        }
+    }
 
     private void StartDrift()
     {
