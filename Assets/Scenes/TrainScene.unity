@@ -2931,7 +2931,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 1200
+  MaxStep: 5000
 --- !u!4 &2060693678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4845445328087768770, guid: b781b42ee38c4cd46a86efcd27f11e75, type: 3}
