@@ -212,6 +212,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7368871634973980842, guid: 4495f9b6a683c3d4ba9cbb80ec344627, type: 3}
+      propertyPath: racerName
+      value: AI#1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368871634973980842, guid: 4495f9b6a683c3d4ba9cbb80ec344627, type: 3}
       propertyPath: totalCheckpoints
       value: 88
       objectReference: {fileID: 0}
@@ -2894,7 +2898,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 19ce6c9e7e509e8419c889a29eea1511, type: 3}
   m_InferenceDevice: 1
   m_BehaviorType: 0
   m_BehaviorName: Car Driver
@@ -2931,7 +2935,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 5000
+  MaxStep: 0
 --- !u!4 &2060693678 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4845445328087768770, guid: b781b42ee38c4cd46a86efcd27f11e75, type: 3}

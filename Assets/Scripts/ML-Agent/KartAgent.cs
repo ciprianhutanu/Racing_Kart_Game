@@ -71,10 +71,10 @@ public class KartAgent : Agent
 
         kartController.SetDrivingParam(accelerationInput, steeringInput, drift);
 
-        Debug.Log($"Acceleration: {accelerationInput}, Steering: {steeringInput}, Drift: {drift}");
+        //Debug.Log($"Acceleration: {accelerationInput}, Steering: {steeringInput}, Drift: {drift}");
 
         if (kartController.GetCurrentSpeed() > 0.1f)
-            AddReward(0.01f); // Reward forward motion
+            AddReward(0.01f);
         else
             AddReward(-0.01f);
 
@@ -85,19 +85,17 @@ public class KartAgent : Agent
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Checkpoint"))
-        {
-            // Ensure it's the correct checkpoint
+        { 
             if (checkpoints[nextCheckpointIndex].gameObject == other.gameObject)
             {
                 nextCheckpointIndex = (nextCheckpointIndex + 1) % checkpoints.Count;
-                AddReward(1.0f); // Reward for reaching the checkpoint
+                AddReward(1.0f); 
             }
         }
         else if (other.CompareTag("AIWall"))
-        {
-            // Penalize the agent for hitting walls
+        {      
             AddReward(-1.0f);
-            EndEpisode(); // Optionally end the episode if a crash occurs
+            EndEpisode(); 
         }
 
 
@@ -105,7 +103,6 @@ public class KartAgent : Agent
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
-        // For manual testing, map player input to actions
         var discreteActions = actionsOut.DiscreteActions;
         discreteActions[0] = 0;
         discreteActions[1] = 0;
