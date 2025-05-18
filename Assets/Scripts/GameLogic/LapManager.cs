@@ -6,7 +6,8 @@ public class LapManager : MonoBehaviour
 {
     public static LapManager Instance;
 
-    public int totalLaps = 3;
+    public static int totalLaps = 3;
+
     private float raceStartTime;
     private List<(RacerProgress racer, float totalTime)> leaderboard = new List<(RacerProgress, float)>();
 
@@ -37,7 +38,6 @@ public class LapManager : MonoBehaviour
     public void RegisterCheckpoint(RacerProgress racer)
     {
         UpdateLeaderboard(racer);
-        Debug.Log($"Checkpoint Update: {GetLeaderboard()}");
     }
 
     public void RegisterFinish(RacerProgress racer)
@@ -75,6 +75,7 @@ public class LapManager : MonoBehaviour
         }
         return result;
     }
+
 
     public float GetGlobalRaceTime()
     {

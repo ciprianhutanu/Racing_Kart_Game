@@ -134,6 +134,16 @@ public class KartController : MonoBehaviour
         return isDrifting;
     }
 
+    public float GetDriftTime()
+    {
+        return driftTime;
+    }
+
+    public bool GetNATDFlag()
+    {
+        return NOT_ABLE_TO_DRIFT_FLAG;
+    }
+
     public void ResetKart()
     {
         transform.position = startingPosition; 

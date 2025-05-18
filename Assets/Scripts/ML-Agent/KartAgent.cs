@@ -95,7 +95,7 @@ public class KartAgent : Agent
         else if (other.CompareTag("AIWall"))
         {      
             AddReward(-1.0f);
-            EndEpisode(); 
+            //EndEpisode(); 
         }
 
 
