@@ -1,0 +1,65 @@
+{
+    "Car Driver": {
+        "checkpoints": [
+            {
+                "steps": 3499971,
+                "file_path": "results\\KartTraining1\\Car Driver\\Car Driver-3499971.onnx",
+                "reward": 793.9737505316734,
+                "creation_time": 1747411553.5572927,
+                "auxillary_file_paths": [
+                    "results\\KartTraining1\\Car Driver\\Car Driver-3499971.pt"
+                ]
+            },
+            {
+                "steps": 3999987,
+                "file_path": "results\\KartTraining1\\Car Driver\\Car Driver-3999987.onnx",
+                "reward": 1229.1889700889587,
+                "creation_time": 1747414949.9595113,
+                "auxillary_file_paths": [
+                    "results\\KartTraining1\\Car Driver\\Car Driver-3999987.pt"
+                ]
+            },
+            {
+                "steps": 4499973,
+                "file_path": "results\\KartTraining1\\Car Driver\\Car Driver-4499973.onnx",
+                "reward": 442.5017559528351,
+                "creation_time": 1747418285.8945208,
+                "auxillary_file_paths": [
+                    "results\\KartTraining1\\Car Driver\\Car Driver-4499973.pt"
+                ]
+            },
+            {
+                "steps": 4999954,
+                "file_path": "results\\KartTraining1\\Car Driver\\Car Driver-4999954.onnx",
+                "reward": 975.5107516646385,
+                "creation_time": 1747421534.9386568,
+                "auxillary_file_paths": [
+                    "results\\KartTraining1\\Car Driver\\Car Driver-4999954.pt"
+                ]
+            },
+            {
+                "steps": 5000018,
+                "file_path": "results\\KartTraining1\\Car Driver\\Car Driver-5000018.onnx",
+                "reward": 975.5107516646385,
+                "creation_time": 1747421535.0109203,
+                "auxillary_file_paths": [
+                    "results\\KartTraining1\\Car Driver\\Car Driver-5000018.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 5000018,
+            "file_path": "results\\KartTraining1\\Car Driver.onnx",
+            "reward": 975.5107516646385,
+            "creation_time": 1747421535.0109203,
+            "auxillary_file_paths": [
+                "results\\KartTraining1\\Car Driver\\Car Driver-5000018.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.1.0",
+        "torch_version": "2.2.2+cu121"
+    }
+}

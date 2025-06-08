@@ -42,7 +42,7 @@ public class RacerProgress : MonoBehaviour
 
         nextCheckpointIndex++;
 
-        Debug.Log($"{racerName} passed checkpoint {checkpointIndex}! Time: {checkpointTime:F2}s");
+        //Debug.Log($"{racerName} passed checkpoint {checkpointIndex}! Time: {checkpointTime:F2}s");
         
         LapManager.Instance.RegisterCheckpoint(this);
 
@@ -58,7 +58,7 @@ public class RacerProgress : MonoBehaviour
             lapTimes.Add(lapTime);
             lapStartTime = currentTime;
 
-            Debug.Log($"{racerName} completed lap {currentLap}! Lap Time: {lapTime:F2}s");
+            //Debug.Log($"{racerName} completed lap {currentLap}! Lap Time: {lapTime:F2}s");
 
             if (LapManager.Instance.IsRaceFinished(currentLap))
             {
@@ -97,6 +97,11 @@ public class RacerProgress : MonoBehaviour
     public List<float> GetLapTimes()
     {
         return new List<float>(lapTimes);
+    }
+
+    public string GetLapFormated()
+    {
+        return currentLap + "/" + LapManager.totalLaps;
     }
 
     public bool IsCheckpointActivated(int checkpointIndex)
