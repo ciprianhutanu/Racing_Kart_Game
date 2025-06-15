@@ -46,6 +46,8 @@ public class KartController : MonoBehaviour
     public float accelerationInput = 0f;
     [HideInInspector]
     public float steeringInput = 0f;
+    [HideInInspector]
+    public List<KartData> kartData = new List<KartData>();
 
     private bool BRAKE_FLAG;
     private bool NOT_ABLE_TO_DRIFT_FLAG = false;
@@ -84,10 +86,16 @@ public class KartController : MonoBehaviour
             float currentAngle = Mathf.LerpAngle(carModel.localEulerAngles.y, targetDriftAngle, Time.deltaTime * driftSmoothing);
             carModel.localRotation = Quaternion.Euler(0f, currentAngle, 0f);
 
-            HandleMovement(); 
-        }
+            HandleMovement();
 
-        UpdateWheels();
+            kartData.Add(new KartData()
+            {
+                time = Time.time,
+                position = KartDataHelper.NormalizePosition(transform.position),
+                speed = currentSpeed,
+                driftUsage = driftTime
+            });
+        }
     }
 
     void FixedUpdate()
@@ -288,10 +296,6 @@ public class KartController : MonoBehaviour
 
         return _targetSpeed;
     }
-
-    void UpdateWheels()
-    {
-        WheelController.kartSpeed = currentSpeed;
-        WheelController.steeringInput = steeringInput;
-    }
 }
+
+
