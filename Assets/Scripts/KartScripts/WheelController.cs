@@ -14,24 +14,47 @@ public class WheelController : MonoBehaviour
     public Transform wheelMesh; 
     public float wheelRadius = 0.08f;
     public float maxSteeringAngle = 30f;
- 
-    [HideInInspector]
-    public static float kartSpeed; 
-    [HideInInspector]
-    public static float steeringInput;
+
+    public KartController kartController;
+
+    private ParticleSystem driftSmoke;
+
+    private bool startedDrifting = false;
+
+    private float kartSpeed;
+    private float steeringInput;
 
     void Start()
     {
         kartSpeed = 0;
         steeringInput = 1;
+
+        driftSmoke = GetComponentInChildren<ParticleSystem>();
     }
 
     void Update()
     {
+        kartSpeed = kartController.GetCurrentSpeed();
+        steeringInput = kartController.steeringInput;
+
         RotateWheel();
         if (wheelPosition == WheelType.FRONT)
         {
             SteerWheel();
+        }
+
+        if(wheelPosition == WheelType.REAR)
+        {
+            if (kartController.GetDriftingState() && !startedDrifting)
+            {
+                driftSmoke.Play();
+                startedDrifting = true;
+            }
+            else if (!kartController.GetDriftingState() && startedDrifting)
+            {
+                startedDrifting = false;
+                driftSmoke.Stop();
+            }
         }
     }
 

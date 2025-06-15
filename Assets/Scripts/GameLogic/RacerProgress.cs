@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class RacerProgress : MonoBehaviour
 {
@@ -57,6 +58,18 @@ public class RacerProgress : MonoBehaviour
             float lapTime = currentTime - lapStartTime;
             lapTimes.Add(lapTime);
             lapStartTime = currentTime;
+
+            KartDataWrapper dataWrapper = new KartDataWrapper
+            {
+                kartDataList = GetComponent<KartController>().kartData
+            };
+
+            //System.IO.File.WriteAllText(
+            //    "C:\\Users\\euseb\\Documents\\Unity\\Racing_Kart_Game\\ResultsData\\lap_data.json",
+            //    JsonUtility.ToJson(dataWrapper)
+            //);
+
+            Debug.Log($"Saved {dataWrapper.kartDataList.Count} entries to lap_data.json");
 
             //Debug.Log($"{racerName} completed lap {currentLap}! Lap Time: {lapTime:F2}s");
 
