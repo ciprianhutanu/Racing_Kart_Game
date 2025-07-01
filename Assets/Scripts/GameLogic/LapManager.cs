@@ -6,7 +6,7 @@ public class LapManager : MonoBehaviour
 {
     public static LapManager Instance;
 
-    public static int totalLaps = 3;
+    public static int totalLaps = 1;
 
     private float raceStartTime;
     private List<(RacerProgress racer, float totalTime)> leaderboard = new List<(RacerProgress, float)>();
@@ -64,6 +64,11 @@ public class LapManager : MonoBehaviour
 
             return a.racer.GetCurrentRaceTime().CompareTo(b.racer.GetCurrentRaceTime());
         });
+    }
+
+    public int GetPositionForRacer(string racerName)
+    {
+        return leaderboard.FindIndex(entry => entry.racer.racerName == racerName);
     }
 
     public string GetLeaderboard()

@@ -26,8 +26,13 @@ public class KartAgent : Agent
     }
 
     public override void CollectObservations(VectorSensor sensor)
-    { 
-        Vector3 directionToCheckpoint = (checkpoints[nextCheckpointIndex].transform.position - transform.position).normalized;
+    {
+        Vector3 directionToCheckpoint = new Vector3(0,0,0);
+
+        if (checkpoints != null && checkpoints.Count > 0 && checkpoints[nextCheckpointIndex] != null)
+        {
+            directionToCheckpoint = (checkpoints[nextCheckpointIndex].transform.position - transform.position).normalized;
+        }
         sensor.AddObservation(directionToCheckpoint);
 
         sensor.AddObservation(kartController.GetCurrentSpeed());

@@ -8,11 +8,13 @@ public class RacerProgress : MonoBehaviour
 {
     public string racerName = "Player";
     public int totalCheckpoints = 0;
+    public bool isPlayer;
+    public bool ALL_CHECKPOINTS_FLAG = false;
+    public FinishRace finisher;
 
     private int currentLap = 0;
     private int nextCheckpointIndex = 0;
     private bool raceCompleted = false;
-    public bool ALL_CHECKPOINTS_FLAG = false;
 
     private float lapStartTime;
     private List<float> checkpointTimes = new List<float>();
@@ -77,7 +79,11 @@ public class RacerProgress : MonoBehaviour
             {
                 raceCompleted = true;
                 float totalRaceTime = currentTime;
-                Debug.Log($"{racerName} finished the race! Total Time: {totalRaceTime:F2}s");
+                if (isPlayer)
+                {
+                    Debug.Log(LapManager.Instance.GetPositionForRacer(racerName));
+                    StartCoroutine(finisher.FinishRacePlayer(LapManager.Instance.GetPositionForRacer(racerName)));
+                }
                 LapManager.Instance.RegisterFinish(this);
             }
         }

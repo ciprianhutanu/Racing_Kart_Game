@@ -88,13 +88,17 @@ public class KartController : MonoBehaviour
 
             HandleMovement();
 
-            kartData.Add(new KartData()
-            {
-                time = Time.time,
-                position = KartDataHelper.NormalizePosition(transform.position),
-                speed = currentSpeed,
-                driftUsage = driftTime
-            });
+            //kartData.Add(new KartData()
+            //{
+            //    time = Time.time,
+            //    position = KartDataHelper.NormalizePosition(transform.position),
+            //    speed = currentSpeed,
+            //    driftUsage = driftTime
+            //});
+        }
+        else
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, brakeFactor * Time.deltaTime);
         }
     }
 
